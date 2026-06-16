@@ -6,6 +6,7 @@
 <title>Musical Alphabet Piano</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap');
 *{box-sizing:border-box}
 
 :root{
@@ -221,15 +222,26 @@ h1{
 }
 
 .note-card.playing{
-  transform:translateY(-7px) scale(1.05);
-  background:radial-gradient(circle,rgba(255,230,163,.96),rgba(255,111,174,.2) 62%,transparent 72%);
-  box-shadow:0 0 22px rgba(255,230,163,.92),0 0 34px rgba(255,111,174,.35);
-  filter:brightness(1.08);
+  animation:noteDance .85s ease-in-out infinite;
+  background:transparent;
+  box-shadow:none;
+  filter:none;
 }
 
 .note-card.playing .symbol{
-  color:#5b3fd6;
-  text-shadow:0 0 14px rgba(255,230,163,.95);
+  color:#d9a441;
+  text-shadow:
+    0 0 6px rgba(255,233,168,.95),
+    0 0 14px rgba(217,164,65,.72),
+    0 0 22px rgba(116,185,255,.35);
+}
+
+@keyframes noteDance{
+  0%{transform:translateY(0) rotate(0deg) scale(1)}
+  25%{transform:translateY(-6px) rotate(-4deg) scale(1.06)}
+  50%{transform:translateY(0) rotate(3deg) scale(1.02)}
+  75%{transform:translateY(-4px) rotate(-2deg) scale(1.05)}
+  100%{transform:translateY(0) rotate(0deg) scale(1)}
 }
 
 .space-card{
@@ -649,6 +661,186 @@ button.space-btn{
   }
 }
 
+
+/* Mockup-inspired title and concert buttons */
+h1{
+  font-family:'Cinzel Decorative', Georgia, 'Times New Roman', serif !important;
+  font-weight:900 !important;
+  letter-spacing:.8px;
+  color:#ffe9a8 !important;
+  text-shadow:
+    0 2px 0 rgba(122,16,47,.85),
+    0 0 18px rgba(217,164,65,.55),
+    0 8px 32px rgba(0,0,0,.55) !important;
+}
+
+/* Navy + golden concert buttons - toolbar only, piano untouched */
+.toolbar button,
+.close-board{
+  background:
+    linear-gradient(180deg,rgba(255,233,168,.16),transparent 42%),
+    linear-gradient(135deg,#203b72 0%,#12224d 58%,#091633 100%) !important;
+  color:#ffe9a8 !important;
+  border:1.5px solid rgba(255,233,168,.72) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.08),
+    inset 0 -7px 0 rgba(0,0,0,.18),
+    0 10px 22px rgba(0,0,0,.28) !important;
+}
+
+.toolbar button:hover,
+.close-board:hover{
+  background:
+    linear-gradient(180deg,rgba(255,233,168,.24),transparent 42%),
+    linear-gradient(135deg,#2c5195 0%,#18336c 56%,#0c1d43 100%) !important;
+  color:#fff4c8 !important;
+  transform:translateY(-2px);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.1),
+    inset 0 -7px 0 rgba(0,0,0,.16),
+    0 16px 30px rgba(0,0,0,.30),
+    0 0 22px rgba(217,164,65,.48) !important;
+}
+
+.toolbar button:active,
+.close-board:active{
+  transform:translateY(0);
+  filter:brightness(.96);
+}
+
+/* New keeps a slightly brighter golden edge but same family */
+.toolbar #clearBtn{
+  background:
+    linear-gradient(180deg,rgba(255,233,168,.20),transparent 42%),
+    linear-gradient(135deg,#24457e 0%,#142a5f 58%,#0a1738 100%) !important;
+}
+
+/* Space stays in the same palette, just a touch softer */
+.toolbar #spaceBtn{
+  background:
+    linear-gradient(180deg,rgba(255,233,168,.18),transparent 42%),
+    linear-gradient(135deg,#294f86 0%,#183764 58%,#0b1b3a 100%) !important;
+}
+
+
+/* Extra theatre details */
+.title-crown{
+  display:inline-block;
+  color:#ffe9a8;
+  font-size:.72em;
+  margin-right:.18em;
+  vertical-align:.18em;
+  text-shadow:
+    0 0 10px rgba(255,233,168,.8),
+    0 0 22px rgba(217,164,65,.48);
+  animation:crownFloat 2.8s ease-in-out infinite;
+}
+
+@keyframes crownFloat{
+  0%,100%{transform:translateY(0) rotate(-3deg)}
+  50%{transform:translateY(-4px) rotate(3deg)}
+}
+
+.subtitle-ornament{
+  color:#ffe9a8;
+  text-shadow:0 0 12px rgba(217,164,65,.65);
+  display:inline-block;
+  margin:0 .45em;
+  animation:ornamentPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes ornamentPulse{
+  0%,100%{transform:scale(1);opacity:.72}
+  50%{transform:scale(1.22);opacity:1}
+}
+
+.floating-music{
+  position:absolute;
+  z-index:0;
+  color:rgba(255,233,168,.42);
+  font-family:"Segoe UI Symbol","Arial Unicode MS",serif;
+  font-size:clamp(28px,4vw,58px);
+  text-shadow:
+    0 0 10px rgba(217,164,65,.45),
+    0 0 26px rgba(116,185,255,.22);
+  animation:musicFloat 6s ease-in-out infinite alternate;
+}
+
+.floating-music.m1{left:8%;top:16%;animation-delay:0s}
+.floating-music.m2{right:10%;top:18%;animation-delay:-1.2s}
+.floating-music.m3{left:14%;bottom:22%;animation-delay:-2.4s}
+.floating-music.m4{right:16%;bottom:20%;animation-delay:-3.5s}
+.floating-music.m5{left:50%;top:9%;animation-delay:-4.5s}
+
+@keyframes musicFloat{
+  0%{transform:translateY(0) rotate(-8deg);opacity:.26}
+  50%{opacity:.55}
+  100%{transform:translateY(22px) rotate(9deg);opacity:.38}
+}
+
+/* Luxury frame around the musical staff */
+.score-wrap{
+  position:relative;
+  border:2px solid rgba(255,233,168,.78) !important;
+  box-shadow:
+    0 20px 46px rgba(0,0,0,.26),
+    inset 0 0 0 2px rgba(255,255,255,.58),
+    inset 0 0 0 6px rgba(217,164,65,.12),
+    0 0 26px rgba(217,164,65,.22) !important;
+}
+
+.score-wrap::before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border-radius:calc(clamp(16px,2.5vw,28px) - 6px);
+  border:1px solid rgba(122,16,47,.26);
+  pointer-events:none;
+}
+
+.score-wrap::after{
+  content:"♪";
+  position:absolute;
+  right:18px;
+  bottom:10px;
+  font-family:"Segoe UI Symbol","Arial Unicode MS",serif;
+  font-size:26px;
+  color:rgba(217,164,65,.45);
+  pointer-events:none;
+}
+
+/* New button: green with golden outline and golden text */
+.toolbar #clearBtn{
+  background:
+    linear-gradient(180deg,rgba(255,233,168,.16),transparent 42%),
+    linear-gradient(135deg,#0f6b45 0%,#08482f 58%,#052b1d 100%) !important;
+  color:#ffe9a8 !important;
+  border:1.5px solid rgba(255,233,168,.78) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.08),
+    inset 0 -7px 0 rgba(0,0,0,.18),
+    0 10px 22px rgba(0,0,0,.28) !important;
+}
+
+.toolbar #clearBtn:hover{
+  background:
+    linear-gradient(180deg,rgba(255,233,168,.24),transparent 42%),
+    linear-gradient(135deg,#159b63 0%,#0b6541 58%,#053523 100%) !important;
+  color:#fff4c8 !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.1),
+    inset 0 -7px 0 rgba(0,0,0,.16),
+    0 16px 30px rgba(0,0,0,.30),
+    0 0 22px rgba(85,239,196,.34),
+    0 0 18px rgba(217,164,65,.38) !important;
+}
+
+@media(max-width:760px){
+  .floating-music{opacity:.35}
+  .floating-music.m5{display:none}
+  .score-wrap::after{font-size:20px;right:12px;bottom:8px}
+}
+
 </style>
 </head>
 
@@ -658,12 +850,18 @@ button.space-btn{
   <div class="light two"></div>
   <div class="light three"></div>
   <div class="light four"></div>
+  <div class="floating-music m1">♪</div>
+  <div class="floating-music m2">♫</div>
+  <div class="floating-music m3">♬</div>
+  <div class="floating-music m4">𝄞</div>
+  <div class="floating-music m5">♩</div>
+
 </div>
 
 <main class="app">
   <header class="header">
-    <h1>Musical Alphabet Piano</h1>
-    <div class="subtitle">Type a name or play the piano keys to translate letters into musical symbols</div>
+    <h1><span class="title-crown">♛</span> Musical Alphabet Piano</h1>
+    <div class="subtitle"><span class="subtitle-ornament">✦</span> Type a name or play the piano keys to translate letters into musical symbols <span class="subtitle-ornament">✦</span></div>
   </header>
 
   <section class="score-wrap">
@@ -678,10 +876,10 @@ button.space-btn{
     <textarea id="textInput" placeholder="Type here... Example: HAGER"></textarea>
     <button class="space-btn" id="spaceBtn">Space</button>
     <button id="playBtn">Play</button>
-    <button id="downloadBtn">Download Audio</button>
+    <button id="downloadBtn">Download My Melody</button>
     <button class="secondary" id="copyBtn">Copy Symbols</button>
-    <button class="secondary" id="boardBtn">Symbol Board</button>
-    <button class="secondary" id="clearBtn">Clear</button>
+    <button class="secondary" id="boardBtn">Music Alphabet</button>
+    <button class="secondary" id="clearBtn">New</button>
   </section>
 
   <section class="piano-wrap">
